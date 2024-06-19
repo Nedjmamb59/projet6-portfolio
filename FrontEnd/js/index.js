@@ -108,3 +108,36 @@ async function displayByCategory() {
   // console.log(buttons);
 }
 
+/*****Partie ou l'utilisateur et conecté*****/
+function logginAdmin() {
+  if (user) {
+    // Modifications si L'utilisateur est connecté
+    // console.log("L'utilisateur est connecté");
+    logOut.textContent = "logout";
+    document.body.insertAdjacentHTML("afterbegin", adminConexionUP);
+    spanEdit.innerHTML = adminConexionDown;
+    divEdit.classList.add("div-edit");
+    divEdit.appendChild(sectionPortfolioH2);
+    divEdit.appendChild(spanEdit);
+    sectionPortfolio.prepend(divEdit);
+    containerFiltres.style = "display:none";
+  } else {
+    // L'utilisateur n'est pas connecté
+    // console.log("L'utilisateur n'est pas connecté");
+  }
+}
+
+/****Suprimer le userToken du local storage si click sur log Out******/
+function logoutAdmin() {
+  logOut.addEventListener("click", () => {
+    if (user) {
+      window.sessionStorage.setItem("token", "");
+      logOut.textContent = "login";
+      window.sessionStorage.setItem("userId", "");
+      window.location.href = "index.html";
+    } else {
+      //renvoi sur page conexion
+      window.location.href = "login.html";
+    }
+  });
+}
